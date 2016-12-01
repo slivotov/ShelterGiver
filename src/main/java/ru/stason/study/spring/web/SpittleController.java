@@ -1,6 +1,6 @@
 package ru.stason.study.spring.web;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -54,6 +54,7 @@ public class SpittleController {
             defaultValue=MAX_LONG_STRING) Long max, @RequestParam(value = "count", defaultValue = DEFAULT_PAGE_SIZE) Integer
             count, Model model) {
         String.valueOf(Long.MAX_VALUE);
+        SecurityContextHolder.getContext(); //This great feature
         model.addAttribute(
                 spittleRepository.findSpittles(
                         max, count));
