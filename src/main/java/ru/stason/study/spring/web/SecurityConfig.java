@@ -17,13 +17,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .regexMatchers("/spittles.*").hasAnyRole("USER", "ADMIN")
                 .anyRequest().permitAll()
                 .and().formLogin().loginPage("/login").loginProcessingUrl("/j_spring_security_check").and()
-                .httpBasic();
-                //.and().requiresChannel()
-                //.regexMatchers(HttpMethod.POST, "/spitter/register").requiresSecure()
-                //.anyRequest().requiresInsecure();
+                .httpBasic()
+                .and().requiresChannel().anyRequest().requiresSecure();
 
         http.portMapper()                //maps the port 8080(http) to 8080  (https)
-                .http(8080).mapsTo(8080);
+                .http(8080)
+                .mapsTo(8080);
     }
 
     @Override
