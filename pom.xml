@@ -98,16 +98,12 @@
                 <configuration>
                     <connectors>
                         <!--in 8 version of jetty plugin impls were moved from mortbay to eclipse-->
-                        <connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
-                            <port>8080</port>
-                            <maxIdleTime>60000</maxIdleTime>
-                        </connector>
                         <connector implementation="org.eclipse.jetty.server.ssl.SslSocketConnector">
-                            <port>8443</port>
-                            <maxIdleTime>60000</maxIdleTime>
+                            <port>8080</port>
+                            <maxIdleTime>30000</maxIdleTime>
                             <keystore>${project.build.directory}/jetty-ssl.keystore</keystore>
-                            <password>jetty6</password>
-                            <keyPassword>jetty6</keyPassword>
+                            <password>qwerty123456</password>
+                            <keyPassword>qwerty123456</keyPassword>
                         </connector>
                     </connectors>
                 </configuration>
@@ -134,10 +130,10 @@
                 </executions>
                 <configuration>
                     <keystore>${project.build.directory}/jetty-ssl.keystore</keystore>
-                    <dname>cn=ru.stason.study</dname><!-- put your CN here-->
-                    <keypass>jetty6</keypass>
-                    <storepass>jetty6</storepass>
-                    <alias>jetty6</alias>
+                    <dname>cn=ru.stason.study</dname>
+                    <keypass>qwerty123456</keypass>
+                    <storepass>qwerty123456</storepass>
+                    <alias>shelter_giver_crt</alias>
                     <keyalg>RSA</keyalg>
                 </configuration>
             </plugin>

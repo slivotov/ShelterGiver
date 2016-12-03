@@ -20,9 +20,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .httpBasic()
                 .and().requiresChannel().anyRequest().requiresSecure();
 
-        http.portMapper()                //maps the port 8080(http) to 8080  (https)
-                .http(8080)
-                .mapsTo(8080);
+        //to prevent https redirect to 8443
+        http.portMapper().http(8080).mapsTo(8080);
     }
 
     @Override
