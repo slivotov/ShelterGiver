@@ -13,7 +13,7 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
-            <version>4.2.4.RELEASE</version>
+            <version>4.3.4.RELEASE</version>
         </dependency>
 
         <dependency>
@@ -41,6 +41,12 @@
         </dependency>
 
         <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+            <version>4.3.4.RELEASE</version>
+        </dependency>
+
+        <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>jstl</artifactId>
             <version>1.2</version>
@@ -50,6 +56,25 @@
             <artifactId>javax.servlet-api</artifactId>
             <version>3.0.1</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>5.2.5.Final</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>5.2.5.Final</version>
+        </dependency>
+
+        <dependency>
+            <groupId>postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>9.1-901-1.jdbc4</version>
+        </dependency>
+
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
@@ -99,7 +124,7 @@
                     <connectors>
                         <!--in 8 version of jetty plugin impls were moved from mortbay to eclipse-->
                         <connector implementation="org.eclipse.jetty.server.ssl.SslSocketConnector">
-                            <port>8080</port>
+                            <port>8443</port>
                             <maxIdleTime>30000</maxIdleTime>
                             <keystore>${project.build.directory}/jetty-ssl.keystore</keystore>
                             <password>qwerty123456</password>

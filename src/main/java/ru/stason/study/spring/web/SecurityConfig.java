@@ -19,9 +19,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and().formLogin().loginPage("/login").loginProcessingUrl("/j_spring_security_check").and()
                 .httpBasic()
                 .and().requiresChannel().anyRequest().requiresSecure();
-
-        //to prevent https redirect to 8443
-        http.portMapper().http(8080).mapsTo(8080);
     }
 
     @Override

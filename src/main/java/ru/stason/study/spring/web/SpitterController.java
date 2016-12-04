@@ -1,12 +1,15 @@
 package ru.stason.study.spring.web;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ru.stason.study.spring.logic.SpitterRepository;
 import ru.stason.study.spring.model.Spitter;
+import ru.stason.study.spring.model.dao.UserDAO;
+import ru.stason.study.spring.persist.entities.User;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -17,6 +20,8 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 @RequestMapping("/spitter")
 public class SpitterController {
     private SpitterRepository spitterRepository;
+    @Autowired
+    private UserDAO userDAO;
 
     public SpitterController() {
         SpitterRepository mockRepository =
@@ -56,6 +61,19 @@ public class SpitterController {
                 spitter.getUsername();
     }
 
+    @RequestMapping(value="/createUser", method=GET)
+    public String showCreateUserForm(final Model model) {
+        model.addAttribute(new User());
+        model.addAttribute("createUser", new User());
+        return "createUser";
+    }
+
+    @RequestMapping(value = "/createUser", method = POST)
+    public String createUser(final User user) {
+        userDAO.saveOrUpdate(user);
+        return "redirect:/spitter/user/" + user.getUserName();
+    }
+
 //todo
 //    @RequestMapping(value="/register", method=POST)
 //    public String processRegistration(
@@ -74,5 +92,12 @@ public class SpitterController {
         Spitter spitter = spitterRepository.findByUsername(username);
         model.addAttribute(spitter);
         return "profile";
+    }
+
+    @RequestMapping(value="/user/{username}", method=GET)
+    public String showNewUser(@PathVariable final String username, final Model model) {
+        final User user = userDAO.getByName(username);
+        model.addAttribute(user);
+        return "user";
     }
 }

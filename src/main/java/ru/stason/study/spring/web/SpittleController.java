@@ -50,21 +50,23 @@ public class SpittleController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public String spittles(@RequestParam(value = "max",
-            defaultValue=MAX_LONG_STRING) Long max, @RequestParam(value = "count", defaultValue = DEFAULT_PAGE_SIZE) Integer
-            count, Model model) {
-        String.valueOf(Long.MAX_VALUE);
+    public String spittles(
+            @RequestParam(value = "max", defaultValue = MAX_LONG_STRING) Long max,
+            @RequestParam(value = "count", defaultValue = DEFAULT_PAGE_SIZE) Integer count,
+            Model model
+    ) {
         SecurityContextHolder.getContext(); //This great feature
         model.addAttribute(
-                spittleRepository.findSpittles(
-                        max, count));
+                spittleRepository.findSpittles(max, count)
+        );
         return "spittles";
     }
 
     @RequestMapping(value="/{spittleId}", method=RequestMethod.GET)
     public String spittle(
             @PathVariable("spittleId") long spittleId, // ("spittleId") can be omitted
-            Model model) {
+            Model model
+    ) {
         model.addAttribute(spittleRepository.findOne(spittleId));
         return "spittle";
     }

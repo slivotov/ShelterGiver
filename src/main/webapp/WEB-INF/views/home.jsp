@@ -9,7 +9,8 @@
 </head>
 <body>
 <h1>Spring test project</h1>
-<a href="<c:url value="/spittles" />">Spittles</a> |
-<a href="<c:url value="/spitter/register" />">Register</a>
+<a href="<c:url value="/spittles" />">Spittles</a>  |
+<a href="<c:url value="/spitter/register" />">Register</a><br/><br/>
+<a href="<c:url value="/spitter/createUser" />">createUser</a>
 </body>
 </html>
